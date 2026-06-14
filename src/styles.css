@@ -1,0 +1,89 @@
+* { box-sizing: border-box; }
+
+html, body, #app {
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+#bar {
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  background: #f3f3f3;
+  border-bottom: 1px solid #d9d9d9;
+  flex: 0 0 auto;
+}
+
+#url {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 6px 9px;
+  font-size: 13px;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  outline: none;
+}
+#url:focus { border-color: #5a5af0; }
+
+#bar button {
+  flex: 0 0 auto;
+  padding: 6px 12px;
+  font-size: 13px;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+}
+#bar button:hover { background: #f0f0ff; border-color: #5a5af0; }
+#load { background: #2b2b5c; color: #fff; border-color: #2b2b5c; }
+#load:hover { background: #3a3a78; }
+
+#stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;          /* clips the scaled / cropped canvas */
+  background: #16161a;       /* letterbox fill when aspect ratios differ */
+}
+
+/* Fixed 1920x1080 virtual canvas. JS sets the transform to scale + center. */
+#frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1080px;
+  border: 0;
+  display: block;
+  background: #fff;
+  transform-origin: top left;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px;
+  text-align: center;
+  background: #fafafa;
+  pointer-events: none;
+}
+.overlay .lead { margin: 0; font-size: 15px; color: #333; }
+.overlay .hint { margin: 0; font-size: 12px; color: #777; max-width: 360px; line-height: 1.5; }
+.overlay code { background: #ececec; padding: 1px 4px; border-radius: 3px; font-size: 11px; }
+
+#warn { background: rgba(255, 250, 235, 0.96); }
+#warn .lead { color: #8a5a00; }
+
+.hidden { display: none; }

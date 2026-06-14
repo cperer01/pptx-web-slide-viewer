@@ -1,0 +1,10 @@
+{
+  "name": "web-slide-addin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PowerPoint content add-in that embeds and interacts with a live webpage as a slide.",
+  "scripts": {
+    "setup-certs": "npx --yes office-addin-dev-certs install",
+    "start": "node server.js"
+  }
+}

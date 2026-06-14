@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Web Slide</title>
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div id="app">
+    <div id="bar">
+      <input id="url" type="text" inputmode="url" autocomplete="off"
+             placeholder="Type a URL and press Enter" spellcheck="false"/>
+      <button id="reload" type="button" title="Reload current page" aria-label="Reload">&#x21bb;</button>
+    </div>
+
+    <div id="stage">
+      <!-- The frame is a fixed 1920x1080 virtual canvas. app.js scales it to
+           fit this stage, so the embedded app always renders at desktop width. -->
+      <iframe id="frame" title="Embedded web page"
+              allow="clipboard-read; clipboard-write; fullscreen; microphone; camera"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+      <div id="empty" class="overlay">
+        <p class="lead">Enter a URL above and press Load.</p>
+        <p class="hint">Pages that block embedding (most third-party sites)
+          will show a blank or refused frame. Your own apps work once they
+          allow this host in their <code>frame-ancestors</code> policy.</p>
+      </div>
+
+      <div id="warn" class="overlay hidden">
+        <p class="lead">This page may be blocking embedding.</p>
+        <p class="hint">If it stays blank, the site sends an
+          <code>X-Frame-Options</code> or <code>frame-ancestors</code> header
+          that refuses to be framed. There is no way around that from here.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
