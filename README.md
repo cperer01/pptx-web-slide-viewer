@@ -49,20 +49,23 @@ Content-Security-Policy: frame-ancestors https://*.officeapps.live.com https://*
 
 and must **not** also send `X-Frame-Options: DENY` or `SAMEORIGIN`.
 
-## Installing the add-in (per user, macOS, no Terminal)
+## Installation
 
 The hosted files being public does not by itself put the add-in on anyone's
 PowerPoint. To install on a Mac:
 
-1. Download two files from this repo: **`manifest.xml`** and
-   **`install.command`** (keep them together in the same folder).
-2. Double-click **`install.command`**. It copies `manifest.xml` into the folder
-   PowerPoint reads add-ins from, then tells you to reopen PowerPoint. The first
-   time, macOS may block it as coming from an unidentified developer —
-   right-click the file, choose **Open**, then confirm.
-3. Quit and reopen PowerPoint, then go to **Insert → Add-ins → My Add-ins** and
-   pick **Web Slide**. It drops onto the slide as an object you can size and
-   position.
+1. Download **`install.command`** and **`manifest.xml`** (keep them together in
+   the same folder, e.g. `~/Downloads`).
+2. In Terminal, run `chmod +x ~/Downloads/install.command`. Accept any popups.
+3. In Terminal, run `xattr -c ~/Downloads/install.command`. Accept any popups.
+4. Double-click **`install.command`**. Accept any popups.
+5. Open your presentation, then select **Add-ins → Developer Add-ins → Web
+   Slide**.
+
+> Steps 2–3 clear the executable bit and the macOS download-quarantine flag so
+> the installer runs without the "unidentified developer" block. Keep
+> `manifest.xml` next to `install.command` — the installer copies the manifest
+> sitting beside it.
 
 To send it to a non-technical teammate, zip `manifest.xml` + `install.command`
 together; everything else is served from GitHub Pages.
