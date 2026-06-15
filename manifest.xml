@@ -17,7 +17,7 @@
 
   <Id>a367605a-b43d-4303-8a3b-a0aa26279d39</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>Chaz</ProviderName>
+  <ProviderName>Chaz Perera</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Web Slide"/>
   <Description DefaultValue="Embed and interact with a live webpage inside a slide."/>
