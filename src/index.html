@@ -10,14 +10,22 @@
 <body>
   <div id="app">
     <div id="bar">
+      <select id="res" title="Canvas resolution (set while editing)"
+              aria-label="Canvas resolution"></select>
       <input id="url" type="text" inputmode="url" autocomplete="off"
              placeholder="Type a URL and press Enter" spellcheck="false"/>
       <button id="reload" type="button" title="Reload current page" aria-label="Reload">&#x21bb;</button>
+      <button id="hide" type="button" title="Hide this bar" aria-label="Hide bar">Hide</button>
     </div>
 
+    <!-- Always-present handle to bring the bar back after hiding it, so the
+         bar can be toggled mid-presentation. Shown only when the bar is hidden. -->
+    <button id="show" type="button" title="Show the URL bar" aria-label="Show bar">&#x2261;</button>
+
     <div id="stage">
-      <!-- The frame is a fixed 1920x1080 virtual canvas. app.js scales it to
-           fit this stage, so the embedded app always renders at desktop width. -->
+      <!-- The frame is a virtual canvas at the chosen resolution. app.js scales
+           it to fit this stage, so the embedded app always renders at its full
+           desktop width. -->
       <iframe id="frame" title="Embedded web page"
               allow="clipboard-read; clipboard-write; fullscreen; microphone; camera"
               referrerpolicy="no-referrer-when-downgrade"></iframe>

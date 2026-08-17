@@ -7,6 +7,7 @@ html, body, #app {
 }
 
 #app {
+  position: relative;          /* anchor for the floating #show handle */
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -20,6 +21,19 @@ html, body, #app {
   border-bottom: 1px solid #d9d9d9;
   flex: 0 0 auto;
 }
+
+#res {
+  flex: 0 0 auto;
+  max-width: 40%;
+  padding: 6px 8px;
+  font-size: 13px;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+}
+#res:focus { border-color: #5a5af0; }
 
 #url {
   flex: 1 1 auto;
@@ -45,6 +59,33 @@ html, body, #app {
 #load { background: #2b2b5c; color: #fff; border-color: #2b2b5c; }
 #load:hover { background: #3a3a78; }
 
+/* Floating handle that reappears when the bar is hidden, so the bar can be
+   toggled back on mid-presentation. Hidden by default; shown via .bar-hidden. */
+#show {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 5;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 26px;
+  padding: 0;
+  font-size: 15px;
+  line-height: 1;
+  color: #333;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.82);
+  cursor: pointer;
+}
+#show:hover { background: #f0f0ff; border-color: #5a5af0; }
+
+/* Bar-hidden state: drop the bar, reveal the floating handle. */
+#app.bar-hidden #bar { display: none; }
+#app.bar-hidden #show { display: flex; }
+
 #stage {
   position: relative;
   flex: 1 1 auto;
@@ -53,7 +94,8 @@ html, body, #app {
   background: #16161a;       /* letterbox fill when aspect ratios differ */
 }
 
-/* Fixed 1920x1080 virtual canvas. JS sets the transform to scale + center. */
+/* Virtual canvas. JS sets width/height from the chosen resolution and the
+   transform to scale + center; 1920x1080 here is just the initial fallback. */
 #frame {
   position: absolute;
   top: 0;

@@ -6,8 +6,22 @@ press Enter, and the page loads in the slide surface below. The URL is saved
 with the slide, so reopening the deck restores the page. The point is to flow
 from slides → live product demo → slides without ever leaving PowerPoint.
 
-The page renders at a fixed 1920×1080 desktop viewport and is scaled to fit the
-slide object.
+The page renders at a chosen desktop resolution (1920×1080 by default) and is
+scaled to fit the slide object.
+
+## Presenting controls
+
+Two controls live in the bar at the top of the embedded object. Both choices are
+saved with the slide, so the deck reopens exactly as you left it.
+
+- **Resolution selector** (left of the URL box) — set while editing. Pick the
+  virtual viewport the page renders at (720p, 1080p, 1440p, 4K, plus 4:3 and 5:4
+  options). The page is then scaled to fit the slide object, so this controls the
+  layout width the embedded app sees, not the on-slide size.
+- **Hide / Show the bar** — click **Hide** to collapse the URL + reload bar for a
+  clean, full-bleed page during a demo. A small **≡** handle stays in the
+  top-right corner; click it to bring the bar back. This works in edit mode and
+  generally in slideshow mode (see the Mac slideshow caveat under _Tuning_).
 
 ## How this repo serves the add-in
 
@@ -94,9 +108,12 @@ clearing the Office cache.
 
 ## Tuning
 
-- The embedded page renders at 1920×1080 and scales to fit. To hide a fixed
-  header or button bar inside the embedded app, set `CROP_TOP` in `src/app.js`
-  to roughly its pixel height at 1920 wide (for example 72 or 96).
+- The embedded page renders at the selected resolution and scales to fit. To
+  hide a fixed header or button bar inside the embedded app, set `CROP_TOP` in
+  `src/app.js` to roughly its pixel height at the canvas width (for example 72 or
+  96 at 1920 wide).
+- To change which resolutions the selector offers, edit the `RESOLUTIONS` list
+  (and `DEFAULT_RES`) near the top of `src/app.js`.
 - Edit mode is fully interactive. Slideshow-mode interactivity is reliable on
   Windows and generally works on Mac, but test your exact build before relying
   on clicking inside the frame mid-present, and keep a fallback slide.
